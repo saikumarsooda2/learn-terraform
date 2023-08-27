@@ -1,13 +1,11 @@
 resource "aws_instance" "web" {
-  ami           = data.aws_ami.example.id
-  instance_type = "t3.micro"
+  ami                    = data.aws_ami.example.id
+  instance_type          = "t3.micro"
   vpc_security_group_ids = [sg-06f9944ca8edc98f7]
 
   tags = {
     Name = var.name
   }
-}
-
 
 
   provisioner "remote-exec" {
@@ -24,7 +22,14 @@ resource "aws_instance" "web" {
       "ansible-palybook -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible.git main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
+}
 
+data "aws_ami" "example" {
+  most_recent      = true
+  name_regex       = "Centos-8-DevOps-Practice"
+  owners           = ["973714476881"]
+
+}
 
 resource "aws_route53_record" "www" {
   zone_id = "Z026249313NGT4ABIR3B9"
@@ -36,12 +41,6 @@ resource "aws_route53_record" "www" {
 
 
 
-data "aws_ami" "example" {
-  most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-  owners           = ["973714476881"]
-
-  }
 
 resource "aws_security_group" "sg" {
   name        = var.name
