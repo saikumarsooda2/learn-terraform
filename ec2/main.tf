@@ -7,21 +7,24 @@ resource "aws_instance" "web" {
     Name = var.name
   }
 }
-resource "aws_instance" "web" {
-  connection {
-    type     = "ssh"
-    user     = "Centos"
-    password = "DevOps321"
-    host     = self.public_ip
-  }
+
+
 
   provisioner "remote-exec" {
+
+    connection {
+      type     = "ssh"
+      user     = "centos"
+      password = "DevOps321"
+      host     = self.public_ip
+    }
+
     inline = [
       "sudo labauto ansible",
-      "ansible-palybook -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible.git main.yml -e env=dev -e role_name=${var.name}",
+      "ansible-palybook -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible.git main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
-}
+
 
 resource "aws_route53_record" "www" {
   zone_id = "Z026249313NGT4ABIR3B9"
