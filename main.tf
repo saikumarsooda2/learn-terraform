@@ -12,3 +12,9 @@ module "catalogue" {
   source = "./ec2"
   name = "catalogue"
 }
+
+module "user" {
+  source = "./ec2"
+  name = "user"
+}
+
