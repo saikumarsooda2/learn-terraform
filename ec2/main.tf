@@ -21,7 +21,6 @@ resource "aws_instance" "web" {
       "sudo labauto ansible",
       "ansible-pull -i localhost, -U https://github.com/saikumarsooda2/roboshop-ansible.git mainroboshop.yml -e env=dev -e role_name=${var.name}"
     ]
-    on_failure = "continue"
   }
 }
 
