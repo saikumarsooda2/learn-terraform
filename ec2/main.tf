@@ -7,7 +7,6 @@ resource "aws_instance" "web" {
     Name = var.name
   }
 
-
   provisioner "remote-exec" {
 
     connection {
@@ -38,9 +37,6 @@ resource "aws_route53_record" "www" {
   ttl     = 300
   records = [aws_instance.web.private_ip]
 }
-
-
-
 
 resource "aws_security_group" "sg" {
   name        = var.name
