@@ -8,8 +8,18 @@
         default = {
         frontend = {}
           mongodb = {}
-          cart = {}
+          catalogue = {}
+          redis = {}
           user = {}
+          cart = {}
+          mysql = {}
+          user = {}
+          shipping = {}
+          payment = {}
+          rabbitmq = {}
+          dispatch = {}
+
+
 
   }
  }
